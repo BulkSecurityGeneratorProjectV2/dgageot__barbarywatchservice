@@ -4,6 +4,7 @@ import static com.barbarysoftware.watchservice.StandardWatchEventKind.*;
 import org.junit.Assert;
 
 import java.io.File;
+import java.nio.file.Files;
 
 public class WatchServiceTest {
     @org.junit.Test
@@ -33,7 +34,7 @@ public class WatchServiceTest {
     @org.junit.Test
     public void testWatchingFile() throws Exception {
         final WatchService watcher = WatchService.newWatchService();
-        WatchableFile f = new WatchableFile(File.createTempFile("watcher_", null));
+        WatchableFile f = new WatchableFile(Files.createTempFile("watcher_", null).toFile());
         f.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
     }
 }
